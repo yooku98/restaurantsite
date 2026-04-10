@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lebanon Mountain Restaurant — Accra</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Tajawal:wght@300;400&display=swap" rel="stylesheet">
+    <title>The Saffron Saga Multi Cuisine — Accra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Sans+Devanagari:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root {
   --gold: #c9a84c;
@@ -12,8 +12,8 @@
   --gold-dim: #7a6230;
   --cream: #f7f0e3;
   --deep: #0f0b07;
-  --cedar: #2d5016;
-  --crimson: #8b1a2a;
+  --lotus: #138808;
+  --saffron: #FF9933;
   --text: #1a1410;
   --muted: #6b5d4f;
 }
@@ -23,7 +23,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Poppins', sans-serif;
   background: var(--deep);
   color: var(--cream);
   overflow-x: hidden;
@@ -58,18 +58,18 @@ nav.scrolled { background: rgba(15,11,7,0.98); border-bottom: 1px solid rgba(201
 .hero-bg {
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse at 20% 50%, rgba(139,26,42,0.3) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 30%, rgba(45,80,22,0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 50%, rgba(255,153,51,0.3) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 30%, rgba(19,136,8,0.2) 0%, transparent 50%),
     linear-gradient(160deg, #1a0f08 0%, #0f0b07 40%, #1a1206 100%);
 }
 .hero-pattern {
   position: absolute; inset: 0; opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='1'%3E%3Cpath d='M30 0l4 8h8l-6 5 2 8-8-5-8 5 2-8-6-5h8z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FF9933' fill-opacity='1'%3E%3Cpath d='M30 0l4 8h8l-6 5 2 8-8-5-8 5 2-8-6-5h8z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 .hero-video-wrap {
   position: absolute; inset: 0; opacity: 0.15;
+  background: url('media/welcomeimg.webp') center/cover no-repeat;
 }
-.hero-video-wrap video { width: 100%; height: 100%; object-fit: cover; }
 .hero-content {
   position: relative; text-align: center; z-index: 2;
   animation: heroFadeUp 1.4s cubic-bezier(0.16,1,0.3,1) both;
@@ -238,6 +238,8 @@ section { padding: 7rem 2rem; max-width: 1100px; margin: 0 auto; }
   aspect-ratio: 4/3; display: flex; flex-direction: column;
   align-items: center; justify-content: center; gap: 1rem;
   position: relative; overflow: hidden;
+  text-decoration: none;
+  color: inherit;
 }
 .map-placeholder::before {
   content: ''; position: absolute; inset: 0;
@@ -246,6 +248,15 @@ section { padding: 7rem 2rem; max-width: 1100px; margin: 0 auto; }
 .map-pin { font-size: 3rem; animation: pinBounce 2s ease-in-out infinite; }
 @keyframes pinBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 .map-label { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.3em; color: var(--gold-dim); text-transform: uppercase; }
+.map-button {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border-bottom: 1px solid rgba(201,168,76,0.4);
+  padding-bottom: 0.2rem;
+}
 
 /* ── CLAIM ── */
 .claim-wrap {
@@ -304,7 +315,7 @@ footer {
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="nav-logo">Lebanon Mountain</div>
+  <div class="nav-logo">The Saffron Saga</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -324,11 +335,11 @@ footer {
     </video>
   </div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Est. in Accra &nbsp;·&nbsp; Authentic Lebanese Cuisine</p>
-    <h1 class="hero-title">Lebanon<br>Mountain</h1>
+    <p class="hero-eyebrow">Est. in Accra &nbsp;·&nbsp; Authentic Indian Multi Cuisine</p>
+    <h1 class="hero-title">The Saffron<br>Saga</h1>
     <div class="hero-divider"></div>
-    <p class="hero-subtitle">From the cedar-clad highlands of Lebanon<br>to your table in Accra</p>
-    <p class="hero-arabic">أهلاً وسهلاً — Ahlan wa Sahlan</p>
+    <p class="hero-subtitle">From the vibrant flavors of India<br>to your table in Accra</p>
+    <p class="hero-arabic">स्वागतम् — Swagatam</p>
     <div style="margin-top:2.5rem">
       <a href="#visit" class="hero-cta"><span>Reserve a Table</span></a>
     </div>
@@ -344,14 +355,14 @@ footer {
   <div class="about-wrap">
     <div class="reveal">
       <p class="about-label">Our Story</p>
-      <h2 class="about-title">A taste of the <em>mountains</em>, served with heart</h2>
-      <p class="about-body">Lebanon Mountain Restaurant carries forward generations of culinary tradition — each dish a journey through the ancient valleys and sun-drenched hills of the Levant. We use fresh ingredients and time-honoured recipes to bring authentic Lebanese flavour to the heart of Accra.</p>
-      <p class="about-body">Whether you arrive for a quiet lunch, a romantic evening, or a family feast, you leave with the warmth of genuine Lebanese hospitality.</p>
-      <p class="about-arabic">مرحبا بكم في مطعم جبل لبنان</p>
+      <h2 class="about-title">A journey through <em>India's</em> culinary tapestry</h2>
+      <p class="about-body">The Saffron Saga brings the rich diversity of Indian cuisine to Accra — from the spicy curries of the South to the aromatic biryanis of the North. Each dish is crafted with authentic spices and traditional techniques, offering a multi-cuisine experience that celebrates India's vibrant food heritage.</p>
+      <p class="about-body">Whether you're seeking a quick bite, a family meal, or a special celebration, our warm hospitality ensures every visit is memorable.</p>
+      <p class="about-arabic">स्वागतम्</p>
     </div>
     <div class="reveal reveal-delay-2">
       <div class="about-visual">
-        <div class="about-cedar">🌲</div>
+        <div class="about-cedar">🪷</div>
         <div class="about-badge">
           <span class="num">★ 4.5</span>
           <span class="txt">Google Rating</span>
@@ -367,8 +378,8 @@ footer {
 <section id="experience">
   <div class="features-wrap">
     <p class="section-label reveal">What we offer</p>
-    <h2 class="section-title reveal reveal-delay-1">Every detail <em>considered</em></h2>
-    <p class="section-sub reveal reveal-delay-2">A complete dining experience — from arrival to the last bite of dessert</p>
+    <h2 class="section-title reveal reveal-delay-1">Every flavor <em>explored</em></h2>
+    <p class="section-sub reveal reveal-delay-2">A complete dining experience — from arrival to the last sip of chai</p>
     <div class="features-grid">
 
       <div class="feature-card reveal">
@@ -379,7 +390,6 @@ footer {
           <li>Takeaway</li>
           <li>Delivery</li>
           <li>Drive-through</li>
-          <li>Outdoor seating</li>
           <li>Table service</li>
         </ul>
       </div>
@@ -388,12 +398,12 @@ footer {
         <span class="fc-icon">🥘</span>
         <p class="fc-title">Menu Highlights</p>
         <ul class="fc-list">
-          <li>Breakfast & Brunch</li>
-          <li>Lunch & Dinner</li>
-          <li>Late-night food</li>
+          <li>Lunch</li>
+          <li>Dinner</li>
+          <li>Solo dining</li>
+          <li>Great dessert</li>
+          <li>Halal food</li>
           <li>Small plates</li>
-          <li>Great desserts</li>
-          <li>Great coffee</li>
         </ul>
       </div>
 
@@ -401,10 +411,9 @@ footer {
         <span class="fc-icon">🍷</span>
         <p class="fc-title">Drinks</p>
         <ul class="fc-list">
-          <li>Wine selection</li>
-          <li>Beer on tap</li>
-          <li>Coffee & espresso</li>
-          <li>Alcohol served</li>
+          <li>Alcohol</li>
+          <li>Beer</li>
+          <li>Spirits</li>
         </ul>
       </div>
 
@@ -412,12 +421,12 @@ footer {
         <span class="fc-icon">✨</span>
         <p class="fc-title">Atmosphere</p>
         <ul class="fc-list">
-          <li>Casual & cosy</li>
-          <li>Romantic setting</li>
-          <li>Quiet & relaxed</li>
-          <li>Trendy interior</li>
-          <li>Good for groups</li>
-          <li>Welcoming for solo</li>
+          <li>Casual</li>
+          <li>Cosy</li>
+          <li>Quiet</li>
+          <li>Trendy</li>
+          <li>Groups</li>
+          <li>Accepts reservations</li>
         </ul>
       </div>
 
@@ -425,10 +434,9 @@ footer {
         <span class="fc-icon">💳</span>
         <p class="fc-title">Payments</p>
         <ul class="fc-list">
-          <li>Credit & debit cards</li>
+          <li>Credit cards</li>
+          <li>Debit cards</li>
           <li>NFC mobile payments</li>
-          <li>Accepts reservations</li>
-          <li>Catering available</li>
         </ul>
       </div>
 
@@ -436,9 +444,9 @@ footer {
         <span class="fc-icon">♿</span>
         <p class="fc-title">Access & Parking</p>
         <ul class="fc-list">
-          <li>Wheelchair accessible</li>
-          <li>Accessible toilets</li>
-          <li>Free street parking</li>
+          <li>Bar on site</li>
+          <li>Toilet</li>
+          <li>Free of charge street parking</li>
           <li>Free parking lot</li>
           <li>Plenty of parking</li>
           <li>Good for kids</li>
@@ -455,16 +463,13 @@ footer {
 <div class="grill-wrap" id="grill">
   <div class="grill-inner">
     <div class="grill-video-wrap reveal">
-      <video controls poster="">
-        <source src="media/grillperfection.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+      <img src="media/dish.webp" alt="Signature Dish" style="width:100%; height:auto; display:block;">
     </div>
     <div class="grill-text reveal reveal-delay-2">
       <p class="section-label">The craft</p>
-      <h2 class="section-title" style="text-align:left">Grill <em>perfection</em></h2>
-      <p>The art of Lebanese grilling is centuries old — open flame, hand-marinated cuts, spices sourced with intention. Our chefs honour that tradition every service, every plate.</p>
-      <p>Watch what happens when patience meets fire.</p>
+      <h2 class="section-title" style="text-align:left">Culinary <em>mastery</em></h2>
+      <p>The art of Indian cooking blends ancient spices with modern techniques — fresh ingredients, bold flavors, and a touch of saffron magic. Our chefs bring that heritage to life in every dish.</p>
+      <p>Taste the saga unfold.</p>
     </div>
   </div>
 </div>
@@ -487,7 +492,7 @@ footer {
           <span class="loc-icon">📞</span>
           <div>
             <span class="loc-label">WhatsApp</span>
-            <span class="loc-val">+233 055 606 8305</span>
+            <span class="loc-val">+233 055 522 2444</span>
           </div>
         </div>
         <div class="location-info-item">
@@ -499,17 +504,17 @@ footer {
         </div>
       </div>
       <div class="btn-row">
-        <a href="https://www.google.com/maps/place/Lebanon+mountain+restaurant/data=!4m2!3m1!1s0xfdf9b3073bea159:0xcd360b9c99179743" target="_blank" class="btn-primary">View on Google Maps</a>
-        <button class="btn-secondary" onclick="window.open('https://wa.me/233556068305','_blank')">Message on WhatsApp</button>
+        <a href="https://www.google.com/maps/place/The+Saffron+Saga+Multi+Cuisine/data=!4m2!3m1!1s0x0:0x1674f0d00d069564?sa=X&ved=1t:2428&ictx=111" target="_blank" class="btn-primary">View on Google Maps</a>
+        <button class="btn-secondary" onclick="window.open('https://wa.me/233555222444','_blank')">Message on WhatsApp</button>
       </div>
     </div>
     <div class="reveal reveal-delay-2">
-      <div class="map-placeholder">
+      <a class="map-placeholder" href="https://www.google.com/maps/place/The+Saffron+Saga+Multi+Cuisine/data=!4m2!3m1!1s0x0:0x1674f0d00d069564?sa=X&ved=1t:2428&ictx=111" target="_blank">
         <div class="map-pin">📍</div>
-        <span class="map-label">Lebanon Mountain Restaurant</span>
+        <span class="map-label">The Saffron Saga</span>
         <span style="font-size:0.8rem;color:rgba(247,240,227,0.3);font-weight:300">Accra, Ghana</span>
-        <a href="https://www.google.com/maps/place/Lebanon+mountain+restaurant/data=!4m2!3m1!1s0xfdf9b3073bea159:0xcd360b9c99179743" target="_blank" style="margin-top:1rem;font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.2em;color:var(--gold);text-decoration:none;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,0.3);padding-bottom:2px;">Open in Maps →</a>
-      </div>
+        <span class="map-button">Open in Maps →</span>
+      </a>
     </div>
   </div>
 </section>
@@ -519,15 +524,15 @@ footer {
   <div class="claim-inner reveal">
     <p class="section-label">Business owner?</p>
     <h2 class="claim-title">This page was built <em>for you</em></h2>
-    <p class="claim-sub">We created this page to show you what a professional online presence could look like for Lebanon Mountain Restaurant. Claim it to take ownership — update your menu, add photos, and start turning visitors into customers.</p>
-    <button class="claim-btn" onclick="window.open('https://wa.me/233557507660?text=I%20am%20the%20owner%20of%20Lebanon%20Mountain%20Restaurant%20and%20would%20like%20to%20claim%20this%20page.','_blank')">Claim This Page</button>
+    <p class="claim-sub">We created this page to show you what a professional online presence could look like for The Saffron Saga Multi Cuisine. Claim it to take ownership — update your menu, add photos, and start turning visitors into customers.</p>
+    <button class="claim-btn" onclick="window.open('https://wa.me/233555222444?text=I%20am%20the%20owner%20of%20The%20Saffron%20Saga%20Multi%20Cuisine%20and%20would%20like%20to%20claim%20this%20page.','_blank')">Claim This Page</button>
   </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <p class="footer-logo">Lebanon Mountain</p>
-  <p class="footer-sub">Authentic Lebanese Cuisine &nbsp;·&nbsp; Accra, Ghana</p>
+  <p class="footer-logo">The Saffron Saga</p>
+  <p class="footer-sub">Indian Multi Cuisine &nbsp;·&nbsp; Accra, Ghana</p>
   <p class="footer-built">Preview site by <a href="https://yooku98.github.io/Portfolio-Website" target="_blank">YookuInc</a></p>
 </footer>
 

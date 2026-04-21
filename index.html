@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="Treehouse Restaurant — Outdoor dining with chill vibes in Accra, Ghana. Great food, quality drinks, live music, and good company.">
+<meta name="theme-color" content="#1e3a0f">
+<title>Treehouse Restaurant — Accra | Outdoor Dining & Chill Vibes</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --g: #1e3a0f;
+  --g2: #2d5016;
+  --g3: #3d6b1f;
+  --amber: #e8963a;
+  --amber-l: #f5c070;
+  --cream: #faf6ee;
+  --white: #ffffff;
+  --dark: #0d1f07;
+  --muted: rgba(255,255,255,0.6);
+  --ease: cubic-bezier(0.16,1,0.3,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+/* grain overlay */
+body::before{
+  content:'';position:fixed;inset:0;z-index:999;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:0.35;
+}
+
+body{
+  font-family:'DM Sans',system-ui,sans-serif;
+  background:var(--g);
+  color:var(--white);
+  overflow-x:hidden;
+  line-height:1.6;
+}
+
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--dark)}
+::-webkit-scrollbar-thumb{background:var(--amber);border-radius:2px}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.1rem 2.5rem;
+  transition:background 0.5s var(--ease),box-shadow 0.5s var(--ease),padding 0.4s var(--ease);
+}
+nav.scrolled{
+  background:rgba(13,31,7,0.96);
+  backdrop-filter:blur(20px);
+  box-shadow:0 1px 0 rgba(255,255,255,0.06);
+  padding:0.8rem 2.5rem;
+}
+.nav-logo{
+  font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:800;
+  color:var(--white);display:flex;align-items:center;gap:0.7rem;letter-spacing:0.01em;
+}
+.nav-logo img{height:36px;width:auto;border-radius:50%;border:1.5px solid rgba(255,255,255,0.2);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{
+  font-size:0.82rem;font-weight:500;color:var(--muted);text-decoration:none;
+  letter-spacing:0.04em;transition:color 0.25s;position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;
+  background:var(--amber);transform:scaleX(0);transform-origin:left;
+  transition:transform 0.3s var(--ease);
+}
+.nav-links a:hover{color:var(--white);}
+.nav-links a:hover::after{transform:scaleX(1);}
+
+/* ── FLOATING WHATSAPP ── */
+.wa-float{
+  position:fixed;bottom:2rem;right:2rem;z-index:300;
+  width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,#25d366,#128c7e);
+  display:flex;align-items:center;justify-content:center;
+  text-decoration:none;font-size:1.5rem;
+  box-shadow:0 4px 20px rgba(37,211,102,0.4);
+  transition:transform 0.3s var(--ease),box-shadow 0.3s var(--ease);
+  animation:waPop 0.6s 1.5s var(--ease) both;
+}
+.wa-float:hover{transform:scale(1.1) translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,0.5);}
+@keyframes waPop{from{opacity:0;transform:scale(0.5)}to{opacity:1;transform:scale(1)}}
+.wa-float svg{width:28px;height:28px;fill:white;}
+
+/* ── HERO ── */
+.hero{
+  position:relative;height:100vh;min-height:620px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;will-change:transform;
+  background:url('media/treehouseout.webp') center/cover no-repeat;
+  transform:scale(1.1);
+  transition:transform 0.1s linear;
+}
+.hero-layers{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to top, rgba(13,31,7,0.95) 0%, rgba(13,31,7,0.3) 40%, rgba(13,31,7,0.15) 100%),
+    linear-gradient(135deg, rgba(30,58,15,0.5) 0%, transparent 60%);
+}
+.hero-content{
+  position:relative;z-index:2;text-align:center;
+  max-width:700px;padding:2rem;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);
+  backdrop-filter:blur(10px);border-radius:50px;
+  padding:0.4rem 1rem;margin-bottom:1.8rem;
+  font-size:0.78rem;font-weight:500;letter-spacing:0.08em;color:var(--amber-l);
+  text-transform:uppercase;
+  animation:fadeUp 1s 0.1s var(--ease) both;
+}
+.hero-tag span{width:6px;height:6px;border-radius:50%;background:var(--amber);display:inline-block;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(0.8)}}
+.hero-h1{
+  font-family:'Syne',sans-serif;font-size:clamp(3rem,8vw,6.5rem);
+  font-weight:800;line-height:0.95;letter-spacing:-0.02em;
+  color:var(--white);margin-bottom:1.2rem;
+  animation:fadeUp 1s 0.25s var(--ease) both;
+}
+.hero-h1 em{
+  display:block;font-style:italic;font-weight:400;
+  font-family:'DM Sans',sans-serif;font-size:0.45em;
+  color:var(--amber-l);letter-spacing:0.02em;margin-bottom:0.3em;
+}
+.hero-sub{
+  font-size:1.1rem;font-weight:300;color:rgba(255,255,255,0.75);
+  margin-bottom:2.5rem;
+  animation:fadeUp 1s 0.4s var(--ease) both;
+}
+.hero-btns{
+  display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
+  animation:fadeUp 1s 0.55s var(--ease) both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── BUTTONS ── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;
+  font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;
+  letter-spacing:0.03em;text-decoration:none;border:none;cursor:pointer;
+  min-height:48px;padding:0.85rem 1.8rem;border-radius:50px;
+  transition:all 0.35s var(--ease);position:relative;overflow:hidden;
+}
+.btn-amber{background:var(--amber);color:var(--dark);}
+.btn-amber::before{content:'';position:absolute;inset:0;background:var(--amber-l);transform:scaleX(0);transform-origin:left;transition:transform 0.4s var(--ease);}
+.btn-amber:hover::before{transform:scaleX(1);}
+.btn-amber span,.btn-outline span{position:relative;z-index:1;}
+.btn-amber:hover{box-shadow:0 8px 25px rgba(232,150,58,0.4);transform:translateY(-1px);}
+.btn-outline{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.35);}
+.btn-outline:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.7);transform:translateY(-1px);}
+
+/* ── SCROLL INDICATOR ── */
+.scroll-hint{
+  position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:0.6rem;
+  animation:fadeUp 1s 1s var(--ease) both;
+}
+.scroll-hint p{font-size:0.65rem;letter-spacing:0.2em;color:rgba(255,255,255,0.4);text-transform:uppercase;}
+.scroll-mouse{
+  width:22px;height:34px;border:1.5px solid rgba(255,255,255,0.25);border-radius:11px;
+  display:flex;justify-content:center;padding-top:5px;
+}
+.scroll-dot{width:3px;height:6px;background:var(--amber);border-radius:2px;animation:scrollDot 1.8s ease-in-out infinite;}
+@keyframes scrollDot{0%{transform:translateY(0);opacity:1}60%{transform:translateY(10px);opacity:0}61%{transform:translateY(0);opacity:0}100%{opacity:1}}
+
+/* ── CLIP TRANSITIONS ── */
+.clip-top{clip-path:polygon(0 0,100% 5%,100% 100%,0 100%);}
+.clip-both{clip-path:polygon(0 5%,100% 0,100% 95%,0 100%);margin:-3rem 0;}
+
+/* ── SECTION SHELL ── */
+.section{padding:6rem 2rem;max-width:1120px;margin:0 auto;}
+.section-sm{padding:4rem 2rem;max-width:1120px;margin:0 auto;}
+
+/* ── LABELS ── */
+.label{
+  font-size:0.7rem;font-weight:600;letter-spacing:0.18em;
+  color:var(--amber);text-transform:uppercase;margin-bottom:0.9rem;display:block;
+}
+.heading{
+  font-family:'Syne',sans-serif;font-size:clamp(1.9rem,4vw,3rem);
+  font-weight:700;line-height:1.15;color:var(--white);margin-bottom:1.2rem;
+}
+.heading em{font-style:italic;font-weight:400;font-family:'DM Sans',sans-serif;color:var(--amber-l);}
+.body-text{font-size:1rem;font-weight:300;color:rgba(255,255,255,0.72);line-height:1.85;margin-bottom:1.2rem;}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.about-img{
+  position:relative;aspect-ratio:3/4;
+  border-radius:4px;overflow:hidden;
+}
+.about-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s var(--ease);}
+.about-img:hover img{transform:scale(1.04);}
+.about-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(13,31,7,0.5),transparent 50%);
+  pointer-events:none;
+}
+.about-badge{
+  position:absolute;bottom:1.5rem;left:1.5rem;z-index:2;
+  background:var(--amber);color:var(--dark);
+  padding:0.6rem 1rem;border-radius:4px;
+  font-family:'Syne',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.05em;
+}
+
+/* ── FEATURES ── */
+.feat-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem;
+}
+.feat-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:6px;padding:2rem 1.6rem;
+  transition:all 0.4s var(--ease);
+  position:relative;overflow:hidden;
+}
+.feat-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(232,150,58,0.08),transparent);
+  opacity:0;transition:opacity 0.4s;
+}
+.feat-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,var(--amber),var(--amber-l));
+  transform:scaleX(0);transform-origin:left;transition:transform 0.5s var(--ease);
+}
+.feat-card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(232,150,58,0.25);
+  box-shadow:0 12px 40px rgba(0,0,0,0.3);
+}
+.feat-card:hover::before{opacity:1;}
+.feat-card:hover::after{transform:scaleX(1);}
+.fc-icon{font-size:2rem;margin-bottom:1.2rem;display:block;}
+.fc-title{
+  font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;
+  color:var(--white);margin-bottom:1rem;letter-spacing:0.02em;
+}
+.fc-list{list-style:none;}
+.fc-list li{
+  font-size:0.88rem;font-weight:300;color:rgba(255,255,255,0.65);
+  padding:0.35rem 0;border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;gap:0.5rem;
+}
+.fc-list li:last-child{border-bottom:none;}
+.fc-list li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--amber);flex-shrink:0;opacity:0.7;}
+
+/* ── HIGHLIGHTS ── */
+.highlights-bg{
+  background:linear-gradient(135deg,rgba(13,31,7,0.8),rgba(30,58,15,0.9));
+  border-top:1px solid rgba(255,255,255,0.06);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  padding:5rem 2rem;
+}
+.hi-grid{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:1rem;
+  max-width:900px;margin:3rem auto 0;
+}
+.hi-item{
+  display:flex;flex-direction:column;align-items:center;gap:0.6rem;
+  padding:1.5rem 1rem;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);
+  border-radius:6px;transition:all 0.35s var(--ease);cursor:default;
+}
+.hi-item:hover{
+  background:rgba(232,150,58,0.12);border-color:rgba(232,150,58,0.3);
+  transform:translateY(-4px);
+}
+.hi-emoji{font-size:1.8rem;line-height:1;}
+.hi-txt{font-size:0.78rem;font-weight:500;color:rgba(255,255,255,0.75);text-align:center;letter-spacing:0.03em;}
+
+/* ── VIDEOS ── */
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3.5rem;}
+.video-card{
+  position:relative;border-radius:6px;overflow:hidden;
+  background:var(--dark);aspect-ratio:9/16;
+  box-shadow:0 8px 30px rgba(0,0,0,0.3);
+}
+.video-card video{width:100%;height:100%;object-fit:cover;display:block;}
+.video-label{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(to top,rgba(13,31,7,0.95),transparent);
+  padding:2rem 1.2rem 1.2rem;
+  font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;
+  color:var(--white);display:flex;align-items:center;gap:0.5rem;
+}
+
+/* ── LOCATION ── */
+.loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.loc-items{margin:2rem 0;}
+.loc-item{
+  display:flex;gap:1.2rem;padding:1.2rem 0;
+  border-bottom:1px solid rgba(255,255,255,0.07);
+}
+.loc-item:first-child{border-top:1px solid rgba(255,255,255,0.07);}
+.loc-emoji{font-size:1.2rem;flex-shrink:0;margin-top:0.1rem;}
+.loc-label{
+  font-size:0.68rem;font-weight:600;letter-spacing:0.15em;
+  color:var(--amber);text-transform:uppercase;margin-bottom:0.3rem;display:block;
+}
+.loc-val{font-size:0.95rem;font-weight:300;color:rgba(255,255,255,0.85);line-height:1.5;}
+.loc-val a{color:var(--amber-l);text-decoration:none;transition:color 0.2s;}
+.loc-val a:hover{color:var(--white);}
+.map-wrap{
+  border-radius:6px;overflow:hidden;aspect-ratio:4/3;
+  border:1px solid rgba(255,255,255,0.1);
+  box-shadow:0 8px 30px rgba(0,0,0,0.3);
+}
+.map-wrap iframe{width:100%;height:100%;border:none;display:block;}
+.btn-row{display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:2rem;}
+
+/* ── CLAIM ── */
+.claim-bg{
+  background:linear-gradient(135deg,rgba(30,58,15,0.9),rgba(13,31,7,0.95));
+  border-top:1px solid rgba(255,255,255,0.07);
+  padding:5rem 2rem;text-align:center;
+}
+.claim-inner{max-width:580px;margin:0 auto;}
+.claim-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(232,150,58,0.2);
+  border-radius:8px;padding:3rem 2.5rem;
+  position:relative;overflow:hidden;
+}
+.claim-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,var(--amber),var(--amber-l),var(--amber));
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--dark);padding:3rem 2rem;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+.footer-inner{
+  max-width:1120px;margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:1.5rem;
+}
+.footer-brand{display:flex;align-items:center;gap:0.8rem;}
+.footer-brand img{height:30px;width:auto;border-radius:50%;}
+.footer-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--white);}
+.footer-tag{font-size:0.8rem;color:rgba(255,255,255,0.4);margin-top:0.2rem;}
+.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap;}
+.footer-links a{
+  font-size:0.85rem;color:rgba(255,255,255,0.5);text-decoration:none;
+  transition:color 0.2s;
+}
+.footer-links a:hover{color:var(--amber);}
+.footer-copy{font-size:0.75rem;color:rgba(255,255,255,0.25);width:100%;text-align:center;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.06);}
+
+/* ── DIVIDER ── */
+.rule{height:1px;background:linear-gradient(to right,transparent,rgba(255,255,255,0.1),transparent);margin:0 2rem;}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s var(--ease),transform 0.7s var(--ease);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-d1{transition-delay:0.1s;}
+.reveal-d2{transition-delay:0.2s;}
+.reveal-d3{transition-delay:0.3s;}
+.reveal-d4{transition-delay:0.4s;}
+.reveal-d5{transition-delay:0.5s;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .feat-grid{grid-template-columns:repeat(2,1fr);}
+  .hi-grid{grid-template-columns:repeat(3,1fr);}
+  .about-grid,.loc-grid,.video-grid{grid-template-columns:1fr;}
+  .about-img{aspect-ratio:16/9;}
+}
+@media(max-width:640px){
+  nav{padding:0.9rem 1.2rem;}
+  .nav-links{display:none;}
+  .hero-btns{flex-direction:column;align-items:center;}
+  .btn{width:100%;max-width:280px;}
+  .feat-grid{grid-template-columns:1fr;}
+  .hi-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-inner{flex-direction:column;align-items:flex-start;}
+  .btn-row{flex-direction:column;}
+  .btn-row .btn{width:100%;}
+  .wa-float{bottom:1.2rem;right:1.2rem;width:50px;height:50px;}
+}
+</style>
+</head>
+<body>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/233599400737" target="_blank" class="wa-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">
+    <img src="media/logo.png" alt="Treehouse">
+    Treehouse
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#vibes">Vibes</a></li>
+    <li><a href="#visit">Visit</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-layers"></div>
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span></span>
+      Outdoor Dining &nbsp;·&nbsp; Chill Atmosphere
+    </div>
+    <h1 class="hero-h1">
+      <em>Welcome to</em>
+      Treehouse
+    </h1>
+    <p class="hero-sub">Where great food meets good company in Accra</p>
+    <div class="hero-btns">
+      <a href="#visit" class="btn btn-amber"><span>Reserve a Table</span></a>
+      <a href="https://wa.me/233599400737" target="_blank" class="btn btn-outline"><span>💬 WhatsApp Us</span></a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <p>Scroll</p>
+    <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="about-grid">
+    <div class="reveal">
+      <span class="label">Welcome to Treehouse</span>
+      <h2 class="heading">A vibrant outdoor escape in the heart of <em>Accra</em></h2>
+      <p class="body-text">Treehouse is more than just a restaurant — it's an experience. Nestled outdoors with a relaxed, chill vibe, we celebrate great food, quality drinks, and unforgettable moments.</p>
+      <p class="body-text">Whether you're here for a casual meal, live music, or a special gathering, our laid-back atmosphere and vibrant energy make every visit memorable.</p>
+      <p class="body-text" style="font-style:italic;color:rgba(255,255,255,0.5);">Good food. Good friends. Good times.</p>
+    </div>
+    <div class="reveal reveal-d2">
+      <div class="about-img">
+        <img src="media/treehouseout.webp" alt="Treehouse Restaurant Outdoor Seating">
+        <div class="about-badge">★ Accra's Chill Spot</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <span class="label reveal">What We Offer</span>
+  <h2 class="heading reveal reveal-d1">Your perfect dining <em>experience</em></h2>
+  <div class="feat-grid">
+    <div class="feat-card reveal">
+      <span class="fc-icon">☀️</span>
+      <h3 class="fc-title">Outdoor Seating</h3>
+      <ul class="fc-list">
+        <li>Relaxed atmosphere</li>
+        <li>Chill vibes</li>
+        <li>Comfortable seating</li>
+        <li>Great weather dining</li>
+      </ul>
+    </div>
+    <div class="feat-card reveal reveal-d1">
+      <span class="fc-icon">🥂</span>
+      <h3 class="fc-title">Drinks & More</h3>
+      <ul class="fc-list">
+        <li>Great Beer Selection</li>
+        <li>Exceptional Cocktails</li>
+        <li>Premium Wine List</li>
+        <li>Specialty Coffee & Tea</li>
+      </ul>
+    </div>
+    <div class="feat-card reveal reveal-d2">
+      <span class="fc-icon">🎵</span>
+      <h3 class="fc-title">Entertainment</h3>
+      <ul class="fc-list">
+        <li>Live Music Events</li>
+        <li>Sport Viewing</li>
+        <li>Casual & Trendy Vibe</li>
+        <li>Social Atmosphere</li>
+      </ul>
+    </div>
+    <div class="feat-card reveal reveal-d3">
+      <span class="fc-icon">🍗</span>
+      <h3 class="fc-title">Our Menu</h3>
+      <ul class="fc-list">
+        <li>Signature Skewers</li>
+        <li>Small Plates</li>
+        <li>Great Desserts</li>
+        <li>Vegan Options</li>
+      </ul>
+    </div>
+    <div class="feat-card reveal reveal-d4">
+      <span class="fc-icon">♿</span>
+      <h3 class="fc-title">Accessibility</h3>
+      <ul class="fc-list">
+        <li>Wheelchair Accessible</li>
+        <li>Accessible Seating</li>
+        <li>Free Parking</li>
+        <li>Family Friendly</li>
+      </ul>
+    </div>
+    <div class="feat-card reveal reveal-d5">
+      <span class="fc-icon">👥</span>
+      <h3 class="fc-title">Perfect For</h3>
+      <ul class="fc-list">
+        <li>Groups & Gatherings</li>
+        <li>Solo Dining</li>
+        <li>Lunch & Dinner</li>
+        <li>Special Occasions</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<div class="highlights-bg">
+  <div style="text-align:center;">
+    <span class="label reveal" style="display:block;">Why You'll Love Us</span>
+    <h2 class="heading reveal reveal-d1" style="margin-bottom:0;">The Treehouse <em>difference</em></h2>
+  </div>
+  <div class="hi-grid" style="max-width:900px;margin:3rem auto 0;">
+    <div class="hi-item reveal"><div class="hi-emoji">☀️</div><p class="hi-txt">Outdoor Vibes</p></div>
+    <div class="hi-item reveal reveal-d1"><div class="hi-emoji">🍗</div><p class="hi-txt">Signature Skewers</p></div>
+    <div class="hi-item reveal reveal-d2"><div class="hi-emoji">🎶</div><p class="hi-txt">Live Music</p></div>
+    <div class="hi-item reveal reveal-d3"><div class="hi-emoji">🌴</div><p class="hi-txt">Chill Atmosphere</p></div>
+    <div class="hi-item reveal reveal-d4"><div class="hi-emoji">🍻</div><p class="hi-txt">Quality Drinks</p></div>
+    <div class="hi-item reveal reveal-d5"><div class="hi-emoji">👥</div><p class="hi-txt">Great Company</p></div>
+  </div>
+</div>
+
+<!-- VIBES / VIDEOS -->
+<section class="section" id="vibes">
+  <span class="label reveal">The Experience</span>
+  <h2 class="heading reveal reveal-d1">Our <em>vibrant</em> world</h2>
+  <div class="video-grid">
+    <div class="video-card reveal">
+      <video controls playsinline preload="metadata">
+        <source src="media/skewer.mp4" type="video/mp4">
+      </video>
+      <div class="video-label">🔥 Signature Skewers</div>
+    </div>
+    <div class="video-card reveal reveal-d2">
+      <video controls playsinline preload="metadata">
+        <source src="media/mood.mp4" type="video/mp4">
+      </video>
+      <div class="video-label">✨ The Vibe</div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- LOCATION -->
+<section class="section" id="visit">
+  <div class="loc-grid">
+    <div class="reveal">
+      <span class="label">Find Us</span>
+      <h2 class="heading">Come <em>visit</em> us</h2>
+      <div class="loc-items">
+        <div class="loc-item">
+          <span class="loc-emoji">📍</span>
+          <div>
+            <span class="loc-label">Location</span>
+            <span class="loc-val">Accra, Ghana<br><a href="https://www.google.com/maps/place/Treehouse+Restaurant/@5.5608888,-0.1747707,17z" target="_blank">View on Google Maps →</a></span>
+          </div>
+        </div>
+        <div class="loc-item">
+          <span class="loc-emoji">📞</span>
+          <div>
+            <span class="loc-label">Contact</span>
+            <span class="loc-val"><a href="tel:0599400737">0599 400 737</a><br><a href="https://wa.me/233599400737" target="_blank">💬 WhatsApp us</a></span>
+          </div>
+        </div>
+        <div class="loc-item">
+          <span class="loc-emoji">🕐</span>
+          <div>
+            <span class="loc-label">Hours</span>
+            <span class="loc-val">Lunch & Dinner<br><span style="font-size:0.85rem;opacity:0.6;">Reservations recommended</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <a href="tel:0599400737" class="btn btn-amber"><span>📞 Call Us</span></a>
+        <a href="https://wa.me/233599400737" target="_blank" class="btn btn-outline"><span>💬 WhatsApp</span></a>
+        <a href="https://www.google.com/maps/place/Treehouse+Restaurant/@5.5608888,-0.1747707,17z" target="_blank" class="btn btn-outline"><span>📍 Directions</span></a>
+      </div>
+    </div>
+    <div class="reveal reveal-d2">
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.6516509638707!2d-0.17477072346649783!3d5.560888833923804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf91435a310c15%3A0x3c7c14eef2e15d4c!2sTreehouse%20Restaurant!5e0!3m2!1sen!2sgh!4v1712676000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLAIM -->
+<div class="claim-bg" id="claim">
+  <div class="claim-inner reveal">
+    <div class="claim-card">
+      <span class="label" style="text-align:center;display:block;">Restaurant Owner?</span>
+      <h2 class="heading" style="text-align:center;">This page was built <em>for you</em></h2>
+      <p class="body-text" style="text-align:center;margin-bottom:2rem;">We created this site to show you what a professional online presence looks like for Treehouse. Claim it to take full ownership — update your menu, add photos, and start turning visitors into loyal customers.</p>
+      <div style="text-align:center;">
+        <button class="btn btn-amber" onclick="window.open('https://wa.me/233557507660?text=I%20would%20like%20to%20claim%20the%20Treehouse%20Restaurant%20website.','_blank')"><span>💬 Claim This Site — GHS 2,000</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="media/logo.png" alt="Treehouse">
+      <div>
+        <div class="footer-name">Treehouse Restaurant</div>
+        <div class="footer-tag">Outdoor Dining · Good Vibes · Accra</div>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="tel:0599400737">📞 0599 400 737</a>
+      <a href="https://wa.me/233599400737">💬 WhatsApp</a>
+      <a href="https://www.google.com/maps/place/Treehouse+Restaurant/@5.5608888,-0.1747707,17z" target="_blank">📍 Location</a>
+    </div>
+    <p class="footer-copy">© 2026 Treehouse Restaurant, Accra. Preview site by <a href="https://yooku98.github.io/Portfolio-Website" target="_blank" style="color:var(--amber);text-decoration:none;">YookuInc</a></p>
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+}, {passive: true});
+
+// Hero parallax
+const heroBg = document.getElementById('heroBg');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if(y < window.innerHeight) {
+    heroBg.style.transform = `scale(1.1) translateY(${y * 0.25}px)`;
+  }
+}, {passive: true});
+
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, {threshold: 0.1, rootMargin: '0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Smooth anchor scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t) t.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>

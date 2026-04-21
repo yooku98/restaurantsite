@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JH Car Rentals – Home of Affordable Car Rentals</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #0a1fa8;
+    --blue-dark: #060f6e;
+    --blue-mid: #1433c8;
+    --yellow: #f5c800;
+    --yellow-light: #ffe566;
+    --white: #ffffff;
+    --off-white: #f2f4ff;
+    --text-dark: #080e3a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--off-white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+    background: rgba(6,15,110,0.96);
+    backdrop-filter: blur(8px);
+    height: 64px;
+    border-bottom: 2px solid var(--yellow);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .logo-badge {
+    width: 42px; height: 42px;
+    background: var(--yellow);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px; color: var(--blue-dark);
+    letter-spacing: 1px;
+    box-shadow: 0 0 0 3px var(--blue-mid);
+  }
+  .nav-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px; color: var(--white); letter-spacing: 2px;
+    line-height: 1.1;
+  }
+  .nav-brand span { color: var(--yellow); display: block; font-size: 11px; letter-spacing: 3px; font-family: 'Barlow', sans-serif; font-weight: 600; }
+  nav ul { list-style: none; display: flex; gap: 28px; }
+  nav ul a { color: var(--white); text-decoration: none; font-weight: 600; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; transition: color .2s; }
+  nav ul a:hover { color: var(--yellow); }
+  .nav-cta {
+    background: var(--yellow); color: var(--blue-dark);
+    padding: 9px 20px; border-radius: 4px;
+    font-weight: 700; font-size: 13px; letter-spacing: 1px;
+    text-decoration: none; text-transform: uppercase;
+    transition: background .2s, transform .15s;
+  }
+  .nav-cta:hover { background: var(--yellow-light); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 55%, #1a3cd4 100%);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center;
+    padding: 100px 5vw 60px;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 80% 50%, rgba(245,200,0,.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  /* diagonal accent */
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -80px; right: -80px;
+    width: 520px; height: 520px;
+    border: 60px solid rgba(245,200,0,.08);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  /* splat decoration */
+  .splat {
+    position: absolute; top: 80px; right: 6vw;
+    width: 240px; height: 240px;
+    opacity: .12;
+    background: radial-gradient(circle, var(--yellow) 30%, transparent 70%);
+    filter: blur(40px);
+    animation: pulse 4s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:.12} 50%{opacity:.2} }
+
+  .hero-content { max-width: 600px; position: relative; z-index: 2; }
+  .hero-tag {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--blue-dark);
+    font-size: 11px; font-weight: 700; letter-spacing: 3px;
+    padding: 5px 14px; border-radius: 2px; text-transform: uppercase;
+    margin-bottom: 24px;
+    animation: fadeUp .6s ease both;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 10vw, 96px);
+    color: var(--white); line-height: .95; letter-spacing: 2px;
+    animation: fadeUp .6s .1s ease both;
+  }
+  .hero h1 em { color: var(--yellow); font-style: normal; }
+  .hero p {
+    margin: 24px 0 36px;
+    color: rgba(255,255,255,.78);
+    font-size: 17px; line-height: 1.6; max-width: 440px;
+    animation: fadeUp .6s .2s ease both;
+  }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp .6s .3s ease both; }
+  .btn-primary {
+    background: var(--yellow); color: var(--blue-dark);
+    padding: 14px 30px; border-radius: 4px;
+    font-weight: 700; font-size: 14px; letter-spacing: 1px;
+    text-decoration: none; text-transform: uppercase;
+    transition: transform .15s, box-shadow .15s;
+    box-shadow: 0 4px 20px rgba(245,200,0,.4);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(245,200,0,.55); }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,.5); color: var(--white);
+    padding: 14px 30px; border-radius: 4px;
+    font-weight: 600; font-size: 14px; letter-spacing: 1px;
+    text-decoration: none; text-transform: uppercase;
+    transition: border-color .2s, color .2s;
+  }
+  .btn-outline:hover { border-color: var(--yellow); color: var(--yellow); }
+
+  .hero-stats {
+    margin-top: 56px;
+    display: flex; gap: 40px;
+    animation: fadeUp .6s .4s ease both;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px; color: var(--yellow); line-height: 1;
+  }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,.6); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--yellow);
+    padding: 10px 0; overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker 18s linear infinite;
+  }
+  .ticker-inner span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px; letter-spacing: 3px; color: var(--blue-dark);
+    padding: 0 36px;
+  }
+  @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 90px 5vw; }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--blue);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 1; margin-bottom: 16px;
+  }
+  .section-sub { color: #555; font-size: 16px; max-width: 500px; line-height: 1.6; margin-bottom: 48px; }
+
+  /* ── SERVICES ── */
+  .services { background: var(--white); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+  }
+  .service-card {
+    border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 32px 28px;
+    background: var(--off-white);
+    transition: border-color .25s, transform .25s, box-shadow .25s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--blue);
+    transition: width .3s;
+  }
+  .service-card:hover { border-color: var(--blue); transform: translateY(-4px); box-shadow: 0 12px 36px rgba(10,31,168,.1); }
+  .service-card:hover::before { width: 100%; opacity: .04; }
+  .service-icon { font-size: 32px; margin-bottom: 16px; }
+  .service-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px; color: var(--blue-dark); margin-bottom: 8px; }
+  .service-card p { font-size: 14px; color: #555; line-height: 1.6; }
+
+  /* ── FLEET ── */
+  .fleet { background: var(--off-white); }
+  .fleet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+  }
+  .fleet-card {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(10,31,168,.07);
+    transition: transform .25s, box-shadow .25s;
+  }
+  .fleet-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(10,31,168,.14); }
+  .fleet-img {
+    width: 100%; height: 180px;
+    object-fit: cover;
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 64px;
+  }
+  .fleet-info { padding: 20px 22px; }
+  .fleet-badge {
+    display: inline-block;
+    background: #e8f0fe; color: var(--blue);
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    padding: 3px 10px; border-radius: 20px; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .fleet-info h3 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; margin-bottom: 6px; }
+  .fleet-info p { font-size: 13px; color: #666; margin-bottom: 14px; line-height: 1.5; }
+  .fleet-discount {
+    display: inline-block;
+    background: var(--yellow); color: var(--blue-dark);
+    font-weight: 700; font-size: 12px; padding: 4px 10px; border-radius: 3px;
+  }
+
+  /* ── WHY ── */
+  .why { background: var(--blue-dark); color: var(--white); }
+  .why .section-label { color: var(--yellow); }
+  .why .section-title { color: var(--white); }
+  .why .section-sub { color: rgba(255,255,255,.65); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 28px;
+  }
+  .why-item {
+    padding: 28px 24px;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 8px;
+    transition: border-color .25s, background .25s;
+  }
+  .why-item:hover { border-color: var(--yellow); background: rgba(245,200,0,.06); }
+  .why-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px; color: var(--yellow); opacity: .25; line-height: 1;
+    margin-bottom: 4px;
+  }
+  .why-item h4 { font-weight: 700; font-size: 16px; margin-bottom: 8px; }
+  .why-item p { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.6; }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--white); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  @media(max-width:680px){ .contact-grid { grid-template-columns: 1fr; } }
+  .contact-info h3 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 1px; margin-bottom: 20px; }
+  .contact-row { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px; }
+  .contact-icon { font-size: 22px; margin-top: 2px; }
+  .contact-row strong { font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--blue); display: block; margin-bottom: 3px; }
+  .contact-row span { font-size: 15px; color: #333; line-height: 1.5; }
+  .contact-form { display: flex; flex-direction: column; gap: 14px; }
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    border: 2px solid #e4e8f8;
+    border-radius: 6px;
+    padding: 13px 16px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    color: var(--text-dark);
+    background: var(--off-white);
+    outline: none;
+    transition: border-color .2s;
+  }
+  .contact-form input:focus,
+  .contact-form select:focus,
+  .contact-form textarea:focus { border-color: var(--blue); background: var(--white); }
+  .contact-form textarea { resize: vertical; min-height: 110px; }
+  .contact-form button {
+    background: var(--blue); color: var(--white);
+    border: none; border-radius: 6px;
+    padding: 14px 24px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px; letter-spacing: 2px;
+    cursor: pointer;
+    transition: background .2s, transform .15s;
+  }
+  .contact-form button:hover { background: var(--blue-mid); transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--text-dark);
+    color: rgba(255,255,255,.55);
+    padding: 36px 5vw;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  footer .foot-brand { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--yellow); letter-spacing: 2px; }
+  footer p { font-size: 13px; }
+  footer a { color: var(--yellow); text-decoration: none; }
+
+  /* ── RESPONSIVE NAV ── */
+  @media(max-width: 700px) {
+    nav ul { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="logo-badge">JH</div>
+    <div class="nav-brand">
+      JH Car Rentals
+      <span>Business & Car Rentals</span>
+    </div>
+  </div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#fleet">Fleet</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:0509095549" class="nav-cta">Call Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="splat"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Home of Affordable Car Rentals · Accra, Ghana</div>
+    <h1>Drive in <em>Style.</em><br>Pay Less.</h1>
+    <p>Premium cars, professional drivers, and seamless fleet solutions — all at the most competitive prices in Accra.</p>
+    <div class="hero-btns">
+      <a href="#fleet" class="btn-primary">Browse Our Fleet</a>
+      <a href="#contact" class="btn-outline">Book a Driver</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">30%</div>
+        <div class="stat-label">Off All Rentals</div>
+      </div>
+      <div>
+        <div class="stat-num">3</div>
+        <div class="stat-label">Contact Lines</div>
+      </div>
+      <div>
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">On Demand Service</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <span>🚗 Car Rentals</span><span>👨‍✈️ Driver Hire</span><span>🚌 Bussing Service</span><span>🗺️ Tour Service</span><span>🔧 Fleet Management</span><span>📞 0509095549</span>
+    <span>🚗 Car Rentals</span><span>👨‍✈️ Driver Hire</span><span>🚌 Bussing Service</span><span>🗺️ Tour Service</span><span>🔧 Fleet Management</span><span>📞 0509095549</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-label">What We Offer</div>
+  <div class="section-title">Our Services</div>
+  <p class="section-sub">Everything you need to move — from self-drive rentals to professional driver placements and full fleet management.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🚗</div>
+      <h3>Car Rental</h3>
+      <p>Rent from our premium fleet of SUVs, sedans, and luxury vehicles at affordable daily and weekly rates. 30% off available.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">👨‍✈️</div>
+      <h3>Driver Hire</h3>
+      <p>Personal or company drivers available full-time or part-time. Professionally trained for reliability and safety.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚌</div>
+      <h3>Bussing Service</h3>
+      <p>Group transport for events, schools, corporate outings, and airport transfers across Greater Accra and beyond.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🗺️</div>
+      <h3>Tour Service</h3>
+      <p>Explore Ghana with our guided tour packages. Comfortable vehicles and experienced drivers who know every route.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔧</div>
+      <h3>Fleet Management</h3>
+      <p>Vehicle maintenance handled end-to-end. No worries — we've got your fleet covered so you can focus on business.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚡</div>
+      <h3>On-Demand Service</h3>
+      <p>Need a driver or vehicle right now? Our on-demand dispatch gets you moving fast — whenever, wherever in Accra.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FLEET -->
+<section class="fleet" id="fleet">
+  <div class="section-label">Available Vehicles</div>
+  <div class="section-title">Our Fleet</div>
+  <p class="section-sub">Choose from a curated selection of premium vehicles — all well-maintained, insured, and ready to roll.</p>
+  <div class="fleet-grid">
+    <div class="fleet-card">
+      <div class="fleet-img">🚙</div>
+      <div class="fleet-info">
+        <span class="fleet-badge">SUV · 4WD</span>
+        <h3>Landcruiser Prado</h3>
+        <p>Reverse camera, sunroof, Sony Damsung system, stars roof, cooled seats, heated seats & more.</p>
+        <span class="fleet-discount">30% OFF Now</span>
+      </div>
+    </div>
+    <div class="fleet-card">
+      <div class="fleet-img">🚘</div>
+      <div class="fleet-info">
+        <span class="fleet-badge">SUV · Crossover</span>
+        <h3>Mitsubishi Outlander</h3>
+        <p>Updated look with new front & rear bumper designs, LED running lights, new center console and shift lever.</p>
+        <span class="fleet-discount">30% OFF Now</span>
+      </div>
+    </div>
+    <div class="fleet-card">
+      <div class="fleet-img">🏎️</div>
+      <div class="fleet-info">
+        <span class="fleet-badge">Luxury · Sedan</span>
+        <h3>Mercedes-Benz</h3>
+        <p>Excellent for daily use, easy to drive with built-in safety devices — comfortable and family-friendly.</p>
+        <span class="fleet-discount">30% OFF Now</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="section-label">Why Choose JH</div>
+  <div class="section-title">The JH Difference</div>
+  <p class="section-sub">We're not just a car rental — we're your mobility partner in Accra.</p>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-num">01</div>
+      <h4>Lowest Prices</h4>
+      <p>Honest, transparent pricing with no hidden fees. Currently 30% off across the entire fleet.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-num">02</div>
+      <h4>Professional Drivers</h4>
+      <p>Vetted, trained drivers for personal or corporate use — full-time or on-demand.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-num">03</div>
+      <h4>Premium Vehicles</h4>
+      <p>Well-maintained, insured fleet ranging from SUVs to luxury sedans and minibuses.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-num">04</div>
+      <h4>Fleet Management</h4>
+      <p>Complete vehicle maintenance and drive management for businesses and organisations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-label">Get in Touch</div>
+  <div class="section-title">Book a Vehicle</div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Ready to Roll?</h3>
+      <div class="contact-row">
+        <span class="contact-icon">📍</span>
+        <div>
+          <strong>Location</strong>
+          <span>37 Shell Filling Station Premises, Accra</span>
+        </div>
+      </div>
+      <div class="contact-row">
+        <span class="contact-icon">📞</span>
+        <div>
+          <strong>Call / WhatsApp</strong>
+          <span>
+            <a href="tel:0509095549">0509 095 549</a><br>
+            <a href="tel:0302984530">0302 984 530</a><br>
+            <a href="tel:0244166726">0244 166 726</a>
+          </span>
+        </div>
+      </div>
+      <div class="contact-row">
+        <span class="contact-icon">✉️</span>
+        <div>
+          <strong>Email</strong>
+          <span><a href="mailto:jhbusinessandcarrentals@gmail.com">jhbusinessandcarrentals@gmail.com</a></span>
+        </div>
+      </div>
+      <div class="contact-row">
+        <span class="contact-icon">📸</span>
+        <div>
+          <strong>Instagram</strong>
+          <span>@jhcarrentals</span>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <input type="text" placeholder="Your Full Name" required>
+      <input type="tel" placeholder="Phone Number" required>
+      <select required>
+        <option value="" disabled selected>Select a Service</option>
+        <option>Car Rental</option>
+        <option>Driver Hire – Personal</option>
+        <option>Driver Hire – Company</option>
+        <option>Bussing Service</option>
+        <option>Tour Service</option>
+        <option>Fleet Management</option>
+        <option>On-Demand Service</option>
+      </select>
+      <textarea placeholder="Tell us more — dates, vehicle preference, pickup location…"></textarea>
+      <button type="submit">Send Booking Request</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-brand">JH Car Rentals</div>
+  <p>© 2025 JH Business & Car Rentals · 37 Shell Filling Station, Accra · <a href="mailto:jhbusinessandcarrentals@gmail.com">jhbusinessandcarrentals@gmail.com</a></p>
+  <p><a href="tel:0509095549">0509 095 549</a></p>
+  <p style="font-size:12px; color:rgba(255,255,255,.35);">Built by <a href="https://yooku-inc.pages.dev" target="_blank" rel="noopener" style="color:var(--yellow);">YookuInc</a></p>
+</footer>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = '✓ Request Sent!';
+    btn.style.background = '#1a8a3a';
+    setTimeout(() => {
+      btn.textContent = 'Send Booking Request';
+      btn.style.background = '';
+      e.target.reset();
+    }, 3000);
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .fleet-card, .why-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
